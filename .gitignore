@@ -1,0 +1,5 @@
+.env
+*.db
+credentials.json
+n8n_data/
+node_modules/

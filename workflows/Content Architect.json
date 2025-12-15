@@ -1,0 +1,92 @@
+{
+  "name": "Content Structures",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an expert SEO strategist and content architect.\n\nBased on the given keyword, generate:\n\n1. Content Structure:\n   - H1\n   - H2 sections\n   - H3 subpoints\n   - CTA suggestions\n\n2. Intent-Based Keyword List:\n   - Informational keywords\n   - Commercial keywords\n   - Transactional keywords\n   - Local intent keywords (if location is present)\n\n3. Keyword Mapping:\n   For each section of the content structure, map:\n   - Primary keyword\n   - 3–5 secondary keywords\n   - Search intent\n   - Target audience\n   - Suggested word count\n\n4. Blog Topics:\n   - 10 blog ideas related to the keyword\n   - High-CTR titles\n   - One-line summaries\n   - Target intent (info / commercial / transactional)\n\nOutput format (do NOT use JSON):\nUse clean headings, bullet points, and organized sections. Do NOT add code blocks. Do NOT use markdown fences.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        464,
+        -16
+      ],
+      "id": "a532fe21-d287-4582-9dc3-cefb8e34a980",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        496,
+        192
+      ],
+      "id": "43249b62-20c6-4463-83f5-21e5dc480072",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "7k5uFScP94dh290X",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseMode": "lastNode"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "bb70fe15-ac02-4405-b1fb-caa8a0c2f6e5",
+      "name": "When chat message received",
+      "webhookId": "18a366d7-4b8c-4506-839e-a84515c5f919"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7ce0c635-791e-45ee-8077-0a743690fe56",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "be90878bc2205a2f162c29c5e178cc60069997759ebbb4e4975d6cc4bad8f484"
+  },
+  "id": "RjMcQDmBOf5jVKK9",
+  "tags": []
+}

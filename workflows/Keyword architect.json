@@ -1,0 +1,90 @@
+{
+  "name": "Keyword Researcher",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -608,
+        -240
+      ],
+      "id": "e21d8c25-fa0a-4482-bd92-1bdec1005df8",
+      "name": "When chat message received",
+      "webhookId": "05dc4658-dded-44c0-87f6-387f3454a0de"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a Keyword Research Engine for SEO automation.\n\nINPUT: One seed keyword\n\nTASK:\n- Generate 20–30 semantically related keyword ideas\n- Group into 3–5 thematic clusters\n- Assign search intent using these definitions:\n  • informational: how-to, guides, definitions, tutorials\n  • commercial: comparisons, reviews, \"best X\", buying guides\n  • transactional: pricing, buy, discount, signup, trial\n  • navigational: brand names, product names, login pages\n- Assign estimated difficulty (0–100, inference-based)\n- Assign competition (Low/Medium/High)\n- Provide 3–5 optimized variants (synonyms, modifiers, plurals)\n- Provide 3–5 long-tail extensions (natural phrases users would search)\n\nOUTPUT RULES:\n1. FIRST output ONLY a valid JSON object following the schema below.\n2. JSON must be clean, valid, and parseable using JSON.parse().\n3. AFTER finishing the JSON, output a human-readable summary in Markdown.\n4. Separate the two sections with a line containing only:\n   ---\n5. The human-readable section should include:\n   - Cluster summaries\n   - Intent breakdown\n   - Difficulty/competition insights\n   - Best placement suggestions (blog, landing page, etc.)\n\nJSON SCHEMA:\n{\n  \"seed\": \"string\",\n  \"generated_at\": \"ISO 8601 timestamp\",\n  \"clusters\": [\n    {\n      \"cluster_name\": \"string\",\n      \"keywords\": [\n        {\n          \"keyword\": \"string\",\n          \"intent\": \"informational|commercial|transactional|navigational\",\n          \"difficulty\": 0-100,\n          \"competition\": \"Low|Medium|High\",\n          \"estimated_volume\": \"10-100|100-1K|1K-10K|10K-100K|100K+\",\n          \"optimized_variants\": [\"string\"],\n          \"long_tails\": [\"string\"]\n        }\n      ]\n    }\n  ]\n}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -352,
+        -256
+      ],
+      "id": "76f0e577-5b4b-487d-9a17-7ebf1a3840c8",
+      "name": "Keyword Architect"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        -96
+      ],
+      "id": "3c6c3cee-1df5-4e07-9c22-7876912e7935",
+      "name": "Architect Brain",
+      "credentials": {
+        "groqApi": {
+          "id": "O7tscdVxh2WTY8FM",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Keyword Architect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Architect Brain": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Keyword Architect",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7aaacbab-4b19-4d71-9601-b65b52af6b6f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6bf732a92021ab7eef1cdcd8d90334defd5fdbe39e809bb32aed6540f82c0ee4"
+  },
+  "id": "B7gEIPTFObCQGE46",
+  "tags": []
+}

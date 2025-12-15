@@ -14,6 +14,7 @@ n8n-Automation-Projects/
 ├── .gitignore
 └── README.md
 
+
 Explanation
 
 workflows/ → Contains exported n8n workflow JSON files
@@ -24,6 +25,7 @@ README.md → Project documentation
 
 🔄 Available Workflows
 1️⃣ Content Architect
+
 
 Purpose:
 Helps design structured, SEO-friendly content by analyzing inputs such as keywords, intent, or page requirements.
@@ -53,6 +55,8 @@ SERP-based keyword processing
 
 Input preparation for content pipelines
 
+
+
 📥 How to Use These Workflows
 Step 1: Clone or Download the Repository
 git clone https://github.com/Devox-V/n8n-Automation-Projects.git
@@ -74,6 +78,7 @@ Add your own credentials (API keys, tokens, etc.)
 
 Activate the workflow
 
+
 🔐 Credentials & Security
 
 Credentials are NOT included
@@ -81,6 +86,7 @@ Credentials are NOT included
 API keys must be added manually inside n8n
 
 .env, databases, and credential files are ignored via .gitignore
+
 
 This ensures:
 
@@ -102,6 +108,7 @@ Clean separation of logic vs execution
 
 Foundation for future automation projects
 
+
 🧠 Best Practices Followed
 
 Workflow logic stored as JSON
@@ -113,6 +120,8 @@ Git used only for versioning
 n8n used only for execution
 
 Clear and minimal structure
+
+
 
 📌 Notes
 
